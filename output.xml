@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.9.13 on win32)" generated="20230222 09:00:53.004" rpa="true" schemaversion="3">
+<suite id="s1" name="Tasks" source="c:\Users\kamma.naveen\Documents\RoboCorp\Project tracker\tasks.robot">
+<test id="s1-t1" name="Minimal task" line="22">
+<kw name="load config file">
+<var>${Dconfig}</var>
+<try>
+<branch type="TRY">
+<kw name="Load JSON from file" library="RPA.JSON">
+<var>${config}</var>
+<arg>Config.json</arg>
+<doc>Load JSON data from a file, and return it as JSON serializable object.
+Depending on the input file the object can be either a dictionary,
+a list, or a scalar value.</doc>
+<msg timestamp="20230222 09:01:00.313" level="INFO">Loading JSON from file: Config.json</msg>
+<msg timestamp="20230222 09:01:00.323" level="INFO">${config} = {'costumor mail': 'kamma.naveen@yash.com', 'user mail': 'kamma.naveen@yash.com', 'cc': 'sreenath.v@yash.com', 'Subject': 'Allocation tracker', 'filename': 'Report', 'Column1': 'Name', 'Column2': 'Key ...</msg>
+<status status="PASS" starttime="20230222 09:01:00.312" endtime="20230222 09:01:00.323"/>
+</kw>
+<status status="PASS" starttime="20230222 09:01:00.312" endtime="20230222 09:01:00.323"/>
+</branch>
+<branch type="EXCEPT">
+<kw name="Set Variable" library="BuiltIn">
+<var>${config}</var>
+<arg>fail</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20230222 09:01:00.324" endtime="20230222 09:01:00.325"/>
+</kw>
+<status status="NOT RUN" starttime="20230222 09:01:00.324" endtime="20230222 09:01:00.325"/>
+</branch>
+<status status="PASS" starttime="20230222 09:01:00.311" endtime="20230222 09:01:00.325"/>
+</try>
+<if>
+<branch type="IF" condition="&quot;${config}&quot; == &quot;fail&quot;">
+<kw name="Open Application" library="RPA.Outlook.Application">
+<doc>Open the Outlook application.</doc>
+<status status="NOT RUN" starttime="20230222 09:01:00.326" endtime="20230222 09:01:00.327"/>
+</kw>
+<kw name="Send Email" library="RPA.Outlook.Application">
+<arg>${localmail}</arg>
+<arg>Bot failure</arg>
+<arg>Config file is missing</arg>
+<doc>Send email with Outlook</doc>
+<status status="NOT RUN" starttime="20230222 09:01:00.327" endtime="20230222 09:01:00.327"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${configstatus}</var>
+<arg>fail</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20230222 09:01:00.328" endtime="20230222 09:01:00.328"/>
+</kw>
+<status status="NOT RUN" starttime="20230222 09:01:00.326" endtime="20230222 09:01:00.329"/>
+</branch>
+<branch type="ELSE">
+<try>
+<branch type="TRY">
+<kw name="Set Variable" library="BuiltIn">
+<var>${mailid}</var>
+<arg>${config}[user mail]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230222 09:01:00.330" level="INFO">${mailid} = kamma.naveen@yash.com</msg>
+<status status="PASS" starttime="20230222 09:01:00.330" endtime="20230222 09:01:00.331"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${subject}</var>
+<arg>${config}[Subject]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230222 09:01:00.332" level="INFO">${subject} = Allocation tracker</msg>
+<status status="PASS" starttime="20230222 09:01:00.331" endtime="20230222 09:01:00.332"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${filename}</var>
+<arg>${config}[filename]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230222 09:01:00.333" level="INFO">${filename} = Report</msg>
+<status status="PASS" starttime="20230222 09:01:00.332" endtime="20230222 09:01:00.333"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${costumerid}</var>
+<arg>${config}[costumor mail]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230222 09:01:00.334" level="INFO">${costumerid} = kamma.naveen@yash.com</msg>
+<status status="PASS" starttime="20230222 09:01:00.333" endtime="20230222 09:01:00.334"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${Name}</var>
+<arg>${config}[Column1]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230222 09:01:00.335" level="INFO">${Name} = Name</msg>
+<status status="PASS" starttime="20230222 09:01:00.334" endtime="20230222 09:01:00.335"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${Key Skill}</var>
+<arg>${config}[Column2]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230222 09:01:00.336" level="INFO">${Key Skill} = Key Skill</msg>
+<status status="PASS" starttime="20230222 09:01:00.335" endtime="20230222 09:01:00.336"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${Client}</var>
+<arg>${config}[Column3]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230222 09:01:00.337" level="INFO">${Client} = Client</msg>
+<status status="PASS" starttime="20230222 09:01:00.337" endtime="20230222 09:01:00.338"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${Start Date}</var>
+<arg>${config}[Column4]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230222 09:01:00.339" level="INFO">${Start Date} = Start Date</msg>
+<status status="PASS" starttime="20230222 09:01:00.338" endtime="20230222 09:01:00.339"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${Designation}</var>
+<arg>${config}[Column5]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230222 09:01:00.340" level="INFO">${Designation} = Designation</msg>
+<status status="PASS" starttime="20230222 09:01:00.339" endtime="20230222 09:01:00.340"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${Grade}</var>
+<arg>${config}[Column6]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230222 09:01:00.341" level="INFO">${Grade} = Grade</msg>
+<status status="PASS" starttime="20230222 09:01:00.340" endtime="20230222 09:01:00.341"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${Primary Skill}</var>
+<arg>${config}[Column7]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230222 09:01:00.341" level="INFO">${Primary Skill} = Primary Skill</msg>
+<status status="PASS" starttime="20230222 09:01:00.341" endtime="20230222 09:01:00.341"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${Secondary Skill}</var>
+<arg>${config}[Column8]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230222 09:01:00.342" level="INFO">${Secondary Skill} = Secondary Skill</msg>
+<status status="PASS" starttime="20230222 09:01:00.342" endtime="20230222 09:01:00.342"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${configstatus}</var>
+<arg>sucess</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230222 09:01:00.343" level="INFO">${configstatus} = sucess</msg>
+<status status="PASS" starttime="20230222 09:01:00.343" endtime="20230222 09:01:00.343"/>
+</kw>
+<status status="PASS" starttime="20230222 09:01:00.329" endtime="20230222 09:01:00.343"/>
+</branch>
+<branch type="EXCEPT">
+<kw name="Set Variable" library="BuiltIn">
+<var>${configstatus}</var>
+<arg>fail</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20230222 09:01:00.344" endtime="20230222 09:01:00.345"/>
+</kw>
+<status status="NOT RUN" starttime="20230222 09:01:00.343" endtime="20230222 09:01:00.345"/>
+</branch>
+<status status="PASS" starttime="20230222 09:01:00.329" endtime="20230222 09:01:00.345"/>
+</try>
+<if>
+<branch type="IF" condition="&quot;${configstatus}&quot; == &quot;fail&quot;">
+<kw name="Set Variable" library="BuiltIn">
+<var>${Dconfig}</var>
+<arg>fail</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20230222 09:01:00.346" endtime="20230222 09:01:00.346"/>
+</kw>
+<status status="NOT RUN" starttime="20230222 09:01:00.345" endtime="20230222 09:01:00.346"/>
+</branch>
+<branch type="ELSE">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${Dconfig}</var>
+<arg>user mail=${mailid}</arg>
+<arg>Subject=${subject}</arg>
+<arg>filename=${filename}</arg>
+<arg>costumor mail=${costumerid}</arg>
+<arg>Name=${Name}</arg>
+<arg>Key Skill=${Key Skill}</arg>
+<arg>Client=${Client}</arg>
+<arg>Start Date=${Start Date}</arg>
+<arg>Designation=${Designation}</arg>
+<arg>Grade=${Grade}</arg>
+<arg>Primary Skill=${Primary Skill}</arg>
+<arg>Secondary Skill=${Secondary Skill}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230222 09:01:00.348" level="INFO">${Dconfig} = {'user mail': 'kamma.naveen@yash.com', 'Subject': 'Allocation tracker', 'filename': 'Report', 'costumor mail': 'kamma.naveen@yash.com', 'Name': 'Name', 'Key Skill': 'Key Skill', 'Client': 'Client', 'S...</msg>
+<status status="PASS" starttime="20230222 09:01:00.347" endtime="20230222 09:01:00.350"/>
+</kw>
+<status status="PASS" starttime="20230222 09:01:00.346" endtime="20230222 09:01:00.350"/>
+</branch>
+<status status="PASS" starttime="20230222 09:01:00.345" endtime="20230222 09:01:00.350"/>
+</if>
+<status status="PASS" starttime="20230222 09:01:00.329" endtime="20230222 09:01:00.350"/>
+</branch>
+<status status="PASS" starttime="20230222 09:01:00.325" endtime="20230222 09:01:00.351"/>
+</if>
+<return>
+<value>${Dconfig}</value>
+<status status="PASS" starttime="20230222 09:01:00.351" endtime="20230222 09:01:00.351"/>
+</return>
+<msg timestamp="20230222 09:01:00.352" level="INFO">${Dconfig} = {'user mail': 'kamma.naveen@yash.com', 'Subject': 'Allocation tracker', 'filename': 'Report', 'costumor mail': 'kamma.naveen@yash.com', 'Name': 'Name', 'Key Skill': 'Key Skill', 'Client': 'Client', 'S...</msg>
+<status status="PASS" starttime="20230222 09:01:00.310" endtime="20230222 09:01:00.352"/>
+</kw>
+<kw name="check mailbox and download attached excel">
+<arg>${Dconfig}</arg>
+<kw name="Create Directory" library="RPA.FileSystem">
+<arg>input</arg>
+<doc>Creates a directory and (optionally) non-existing parent directories.</doc>
+<status status="PASS" starttime="20230222 09:01:00.355" endtime="20230222 09:01:00.357"/>
+</kw>
+<kw name="Create Directory" library="RPA.FileSystem">
+<arg>processed</arg>
+<doc>Creates a directory and (optionally) non-existing parent directories.</doc>
+<status status="PASS" starttime="20230222 09:01:00.358" endtime="20230222 09:01:00.358"/>
+</kw>
+<kw name="Create Directory" library="RPA.FileSystem">
+<arg>Output</arg>
+<doc>Creates a directory and (optionally) non-existing parent directories.</doc>
+<status status="PASS" starttime="20230222 09:01:00.359" endtime="20230222 09:01:00.360"/>
+</kw>
+<if>
+<branch type="IF" condition="&quot;${Dconfig}&quot; == &quot;fail&quot;">
+<kw name="Open Application" library="RPA.Outlook.Application">
+<doc>Open the Outlook application.</doc>
+<status status="NOT RUN" starttime="20230222 09:01:00.361" endtime="20230222 09:01:00.361"/>
+</kw>
+<kw name="Send Email" library="RPA.Outlook.Application">
+<arg>${localmail}</arg>
+<arg>Bot failure</arg>
+<arg>Config data is missing please check the config file</arg>
+<doc>Send email with Outlook</doc>
+<status status="NOT RUN" starttime="20230222 09:01:00.361" endtime="20230222 09:01:00.362"/>
+</kw>
+<status status="NOT RUN" starttime="20230222 09:01:00.361" endtime="20230222 09:01:00.362"/>
+</branch>
+<branch type="ELSE">
+<try>
+<branch type="TRY">
+<kw name="Open Application" library="RPA.Outlook.Application">
+<doc>Open the Outlook application.</doc>
+<status status="PASS" starttime="20230222 09:01:00.363" endtime="20230222 09:01:03.303"/>
+</kw>
+<kw name="Get Emails" library="RPA.Outlook.Application">
+<arg>account_name=${Dconfig}[costumor mail]</arg>
+<arg>folder_name=Inbox</arg>
+<arg>save_attachments=True</arg>
+<arg>sort=True</arg>
+<arg>email_filter=[Subject]= ${Dconfig}[Subject]</arg>
+<arg>attachment_folder=input</arg>
+<doc>Get emails from a specified email folder. Can be used to save attachments.</doc>
+<status status="PASS" starttime="20230222 09:01:03.305" endtime="20230222 09:01:07.221"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230222 09:01:09.241" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230222 09:01:07.231" endtime="20230222 09:01:09.241"/>
+</kw>
+<status status="PASS" starttime="20230222 09:01:00.362" endtime="20230222 09:01:09.242"/>
+</branch>
+<branch type="EXCEPT">
+<kw name="Open Application" library="RPA.Outlook.Application">
+<doc>Open the Outlook application.</doc>
+<status status="NOT RUN" starttime="20230222 09:01:09.243" endtime="20230222 09:01:09.244"/>
+</kw>
+<kw name="Send Email" library="RPA.Outlook.Application">
+<arg>kamma.naveen@yash.com</arg>
+<arg>Bot failure</arg>
+<arg>No mails arrived</arg>
+<doc>Send email with Outlook</doc>
+<status status="NOT RUN" starttime="20230222 09:01:09.244" endtime="20230222 09:01:09.245"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>error</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20230222 09:01:09.247" endtime="20230222 09:01:09.248"/>
+</kw>
+<status status="NOT RUN" starttime="20230222 09:01:09.242" endtime="20230222 09:01:09.249"/>
+</branch>
+<status status="PASS" starttime="20230222 09:01:00.362" endtime="20230222 09:01:09.250"/>
+</try>
+<status status="PASS" starttime="20230222 09:01:00.362" endtime="20230222 09:01:09.250"/>
+</branch>
+<status status="PASS" starttime="20230222 09:01:00.360" endtime="20230222 09:01:09.250"/>
+</if>
+<status status="PASS" starttime="20230222 09:01:00.353" endtime="20230222 09:01:09.251"/>
+</kw>
+<kw name="Read input excel">
+<var>${input}</var>
+<arg>${Dconfig}</arg>
+<kw name="List Files In Directory" library="RPA.FileSystem">
+<var>${folder}</var>
+<arg>input</arg>
+<doc>Lists all the files in the given directory, relative to it.</doc>
+<msg timestamp="20230222 09:01:09.263" level="INFO">${folder} = [File(path='C:\\Users\\kamma.naveen\\Documents\\RoboCorp\\Project tracker\\input\\Report - 2023-02-13T095706.212-2.xls', name='Report - 2023-02-13T095706.212-2.xls', size=171008, mtime=1677035293.3394...</msg>
+<status status="PASS" starttime="20230222 09:01:09.255" endtime="20230222 09:01:09.264"/>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<var>${length}</var>
+<arg>${folder}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<msg timestamp="20230222 09:01:09.266" level="INFO">Length is 2</msg>
+<msg timestamp="20230222 09:01:09.267" level="INFO">${length} = 2</msg>
+<status status="PASS" starttime="20230222 09:01:09.266" endtime="20230222 09:01:09.268"/>
+</kw>
+<if>
+<branch type="IF" condition="${length} == 0">
+<kw name="Log" library="BuiltIn">
+<arg>mail not found</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20230222 09:01:09.271" endtime="20230222 09:01:09.272"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>fail</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20230222 09:01:09.273" endtime="20230222 09:01:09.273"/>
+</kw>
+<status status="NOT RUN" starttime="20230222 09:01:09.270" endtime="20230222 09:01:09.274"/>
+</branch>
+<branch type="ELSE">
+<kw name="Get File Name" library="RPA.FileSystem">
+<var>${name}</var>
+<arg>${folder}[0]</arg>
+<doc>Returns only the full file name portion of a path.</doc>
+<msg timestamp="20230222 09:01:09.279" level="INFO">${name} = Report - 2023-02-13T095706.212-2.xls</msg>
+<status status="PASS" starttime="20230222 09:01:09.277" endtime="20230222 09:01:09.280"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${name}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230222 09:01:09.284" level="INFO">Report - 2023-02-13T095706.212-2.xls</msg>
+<status status="PASS" starttime="20230222 09:01:09.281" endtime="20230222 09:01:09.284"/>
+</kw>
+<if>
+<branch type="IF" condition="&quot;${Dconfig}[filename]&quot; in &quot;${name}&quot;">
+<kw name="Open Workbook" library="RPA.Excel.Files">
+<arg>input/${name}</arg>
+<doc>Open an existing Excel workbook.</doc>
+<msg timestamp="20230222 09:01:09.321" level="INFO">Opened workbook: &lt;RPA.Excel.Files.XlsWorkbook object at 0x0000027412C4B700&gt;</msg>
+<status status="PASS" starttime="20230222 09:01:09.287" endtime="20230222 09:01:09.322"/>
+</kw>
+<kw name="Set Active Worksheet" library="RPA.Excel.Files">
+<arg>REPORT_SHEET</arg>
+<doc>Set the active worksheet.</doc>
+<status status="PASS" starttime="20230222 09:01:09.323" endtime="20230222 09:01:09.343"/>
+</kw>
+<kw name="Read Worksheet As Table" library="RPA.Excel.Files">
+<var>${input}</var>
+<arg>header=True</arg>
+<arg>start=${2}</arg>
+<doc>Read the contents of a worksheet into a Table container. Allows
+sorting/filtering/manipulating using the ``RPA.Tables`` library.</doc>
+<msg timestamp="20230222 09:01:09.374" level="INFO">Created table: Table(columns=['S.No.', 'HRIMS Code', 'Name', 'BG', 'BU', 'SBU', 'Ownership', 'BG_2', 'BU_2', 'SBU_2', 'Practise', 'Service Line', 'Skill Cluster', 'Skill Sub-Cluster', 'Key Skill', 'CoE', 'Base Location', 'Deployment Location', 'Client', 'ProjectUnit', 'Project', 'SubProject', 'Allocation', 'Start Date', 'Allocated Since', 'Billable', 'Percentage Allocation', 'Delivery Manager', 'Project Manager', 'Remark From Delivery Unit / Business Unit', 'Designation', 'Grade', 'Primary Skill', 'Secondary Skill', 'Company', 'Client-Site Deputed'], rows=95)</msg>
+<msg timestamp="20230222 09:01:09.377" level="INFO">${input} = Table(columns=['S.No.', 'HRIMS Code', 'Name', 'BG', 'BU', 'SBU', 'Ownership', 'BG_2', 'BU_2', 'SBU_2', 'Practise', 'Service Line', 'Skill Cluster', 'Skill Sub-Cluster', 'Key Skill', 'CoE', 'Base Locat...</msg>
+<status status="PASS" starttime="20230222 09:01:09.345" endtime="20230222 09:01:09.377"/>
+</kw>
+<status status="PASS" starttime="20230222 09:01:09.285" endtime="20230222 09:01:09.378"/>
+</branch>
+<branch type="ELSE">
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>missing</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20230222 09:01:09.380" endtime="20230222 09:01:09.380"/>
+</kw>
+<status status="NOT RUN" starttime="20230222 09:01:09.379" endtime="20230222 09:01:09.381"/>
+</branch>
+<status status="PASS" starttime="20230222 09:01:09.285" endtime="20230222 09:01:09.382"/>
+</if>
+<kw name="List Files In Directory" library="RPA.FileSystem">
+<var>${num}</var>
+<arg>processed</arg>
+<doc>Lists all the files in the given directory, relative to it.</doc>
+<msg timestamp="20230222 09:01:09.391" level="INFO">${num} = [File(path='C:\\Users\\kamma.naveen\\Documents\\RoboCorp\\Project tracker\\processed\\Report - 2023-02-13T095706.212-2.xls-1', name='Report - 2023-02-13T095706.212-2.xls-1', size=171008, mtime=1677035...</msg>
+<status status="PASS" starttime="20230222 09:01:09.384" endtime="20230222 09:01:09.392"/>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<var>${length}</var>
+<arg>${num}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<msg timestamp="20230222 09:01:09.393" level="INFO">Length is 4</msg>
+<msg timestamp="20230222 09:01:09.393" level="INFO">${length} = 4</msg>
+<status status="PASS" starttime="20230222 09:01:09.392" endtime="20230222 09:01:09.394"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${len}</var>
+<arg>${length}+1</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230222 09:01:09.396" level="INFO">${len} = 5</msg>
+<status status="PASS" starttime="20230222 09:01:09.395" endtime="20230222 09:01:09.397"/>
+</kw>
+<kw name="Move File" library="RPA.FileSystem">
+<arg>input/${name}</arg>
+<arg>processed/${name}-${len}</arg>
+<doc>Move a file from source path to destination path,
+optionally overwriting the destination.</doc>
+<msg timestamp="20230222 09:01:09.407" level="INFO">Moved file: input\Report - 2023-02-13T095706.212-2.xls -&gt; processed\Report - 2023-02-13T095706.212-2.xls-5</msg>
+<status status="PASS" starttime="20230222 09:01:09.399" endtime="20230222 09:01:09.408"/>
+</kw>
+<kw name="Empty Directory" library="RPA.FileSystem">
+<arg>input</arg>
+<doc>Removes all the files in the given directory.</doc>
+<msg timestamp="20230222 09:01:09.414" level="INFO">Removed file: input\Report - 2023-02-13T095706.212.xls</msg>
+<status status="PASS" starttime="20230222 09:01:09.409" endtime="20230222 09:01:09.415"/>
+</kw>
+<status status="PASS" starttime="20230222 09:01:09.276" endtime="20230222 09:01:09.415"/>
+</branch>
+<status status="PASS" starttime="20230222 09:01:09.268" endtime="20230222 09:01:09.415"/>
+</if>
+<return>
+<value>${input}</value>
+<status status="PASS" starttime="20230222 09:01:09.416" endtime="20230222 09:01:09.416"/>
+</return>
+<msg timestamp="20230222 09:01:09.416" level="INFO">${input} = Table(columns=['S.No.', 'HRIMS Code', 'Name', 'BG', 'BU', 'SBU', 'Ownership', 'BG_2', 'BU_2', 'SBU_2', 'Practise', 'Service Line', 'Skill Cluster', 'Skill Sub-Cluster', 'Key Skill', 'CoE', 'Base Locat...</msg>
+<status status="PASS" starttime="20230222 09:01:09.253" endtime="20230222 09:01:09.417"/>
+</kw>
+<kw name="filter table using required columns and save in csv">
+<var>${colerror}</var>
+<arg>${Dconfig}</arg>
+<arg>${input}</arg>
+<if>
+<branch type="IF" condition="&quot;${input}&quot; == &quot;fail&quot;">
+<kw name="Open Application" library="RPA.Outlook.Application">
+<doc>Open the Outlook application.</doc>
+<status status="NOT RUN" starttime="20230222 09:01:09.423" endtime="20230222 09:01:09.424"/>
+</kw>
+<kw name="Send Email" library="RPA.Outlook.Application">
+<arg>${localmail}</arg>
+<arg>Bot failure</arg>
+<arg>mail not found pls send the attachment with ${Dconfig}[Subject] as subject</arg>
+<doc>Send email with Outlook</doc>
+<status status="NOT RUN" starttime="20230222 09:01:09.424" endtime="20230222 09:01:09.424"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${colerror}</var>
+<arg>mail</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20230222 09:01:09.425" endtime="20230222 09:01:09.425"/>
+</kw>
+<status status="NOT RUN" starttime="20230222 09:01:09.422" endtime="20230222 09:01:09.425"/>
+</branch>
+<branch type="ELSE IF" condition="&quot;${input}&quot; == &quot;missing&quot;">
+<kw name="Open Application" library="RPA.Outlook.Application">
+<doc>Open the Outlook application.</doc>
+<status status="NOT RUN" starttime="20230222 09:01:09.426" endtime="20230222 09:01:09.426"/>
+</kw>
+<kw name="Send Email" library="RPA.Outlook.Application">
+<arg>${localmail}</arg>
+<arg>Bot failure</arg>
+<arg>attachment</arg>
+<arg>not found pls send the attachment with ${Dconfig}[Subject] as subject</arg>
+<doc>Send email with Outlook</doc>
+<status status="NOT RUN" starttime="20230222 09:01:09.426" endtime="20230222 09:01:09.426"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${colerror}</var>
+<arg>file</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20230222 09:01:09.427" endtime="20230222 09:01:09.427"/>
+</kw>
+<status status="NOT RUN" starttime="20230222 09:01:09.426" endtime="20230222 09:01:09.428"/>
+</branch>
+<branch type="ELSE">
+<try>
+<branch type="TRY">
+<kw name="Get Table Column" library="RPA.Tables">
+<var>${Name}</var>
+<arg>${input}</arg>
+<arg>${Dconfig}[Name]</arg>
+<doc>Get all values for a single column in a table.</doc>
+<msg timestamp="20230222 09:01:09.430" level="INFO">${Name} = ['Sai Rohit  Majji', 'Mupparaju  Veera Venkata Sai Ramakrishna', 'Chakrathi  Asha Kiran', 'Appikatla Kiran Kumar', 'Putta  Rakesh', 'Jackson  Marteen', 'Shaik  Jilani Pasha', 'Nilofar Hasrat Mulani', ...</msg>
+<status status="PASS" starttime="20230222 09:01:09.430" endtime="20230222 09:01:09.432"/>
+</kw>
+<kw name="Get Table Column" library="RPA.Tables">
+<var>${Key Skill}</var>
+<arg>${input}</arg>
+<arg>${Dconfig}[Key Skill]</arg>
+<doc>Get all values for a single column in a table.</doc>
+<msg timestamp="20230222 09:01:09.433" level="INFO">${Key Skill} = ['RPA-Automation Anywhere', 'RPA-Automation Anywhere', 'RPA-Automation Anywhere', 'RPA-UiPath', 'RPA-UiPath', 'Automation- RPA Infra', 'RPA-UiPath', 'RPA-UiPath', 'PMO', 'RPA-Automation Anywhere', 'RP...</msg>
+<status status="PASS" starttime="20230222 09:01:09.432" endtime="20230222 09:01:09.434"/>
+</kw>
+<kw name="Get Table Column" library="RPA.Tables">
+<var>${Client}</var>
+<arg>${input}</arg>
+<arg>${Dconfig}[Client]</arg>
+<doc>Get all values for a single column in a table.</doc>
+<msg timestamp="20230222 09:01:09.435" level="INFO">${Client} = ['Caterpillar, Inc', 'Caterpillar, Inc', 'Merck', 'US Shared Support', 'CoE', 'Capella', 'Capella', 'CoE', 'CoE', 'Merck', 'Merck', 'CoE', 'CoE', 'Capella', 'Capella', 'NMLP National Material L.P', 'C...</msg>
+<status status="PASS" starttime="20230222 09:01:09.434" endtime="20230222 09:01:09.436"/>
+</kw>
+<kw name="Get Table Column" library="RPA.Tables">
+<var>${Start Date}</var>
+<arg>${input}</arg>
+<arg>${Dconfig}[Start Date]</arg>
+<doc>Get all values for a single column in a table.</doc>
+<msg timestamp="20230222 09:01:09.439" level="INFO">${Start Date} = ['20-Oct-22', '21-Jul-22', '14-Sep-21', '12-Jul-22', '26-Sep-22', '03-Jan-23', '10-Jan-23', '13-Nov-22', '12-May-22', '24-May-22', '07-Sep-22', '26-Sep-22', '04-Oct-22', '16-Sep-22', '28-Nov-22', '03-...</msg>
+<status status="PASS" starttime="20230222 09:01:09.436" endtime="20230222 09:01:09.441"/>
+</kw>
+<kw name="Get Table Column" library="RPA.Tables">
+<var>${Designation}</var>
+<arg>${input}</arg>
+<arg>${Dconfig}[Designation]</arg>
+<doc>Get all values for a single column in a table.</doc>
+<msg timestamp="20230222 09:01:09.445" level="INFO">${Designation} = ['Trainee Programmer', 'Sr. Software Engineer', 'Module Lead', 'Sr. Software Engineer', 'Trainee Programmer', 'Tech Lead', 'Sr. Software Engineer', 'Trainee', 'Sr. Project Coordinator', 'Software Engi...</msg>
+<status status="PASS" starttime="20230222 09:01:09.444" endtime="20230222 09:01:09.445"/>
+</kw>
+<kw name="Get Table Column" library="RPA.Tables">
+<var>${Grade}</var>
+<arg>${input}</arg>
+<arg>${Dconfig}[Grade]</arg>
+<doc>Get all values for a single column in a table.</doc>
+<msg timestamp="20230222 09:01:09.449" level="INFO">${Grade} = ['T', 'E2', 'E3', 'E2', 'T', 'E3', 'E2', 'T', 'E2', 'E1', 'E2', 'T', 'T', 'E4', 'E4', 'E3', 'T', 'E3', 'E3', 'E3', 'E2', 'E4', 'T', 'E2', 'E6', 'T', 'T', 'E3', 'T', 'E3', 'E2', 'T', 'E2', 'E5', 'E1', ...</msg>
+<status status="PASS" starttime="20230222 09:01:09.446" endtime="20230222 09:01:09.449"/>
+</kw>
+<kw name="Get Table Column" library="RPA.Tables">
+<var>${Primary Skill}</var>
+<arg>${input}</arg>
+<arg>${Dconfig}[Primary Skill]</arg>
+<doc>Get all values for a single column in a table.</doc>
+<msg timestamp="20230222 09:01:09.452" level="INFO">${Primary Skill} = ['Java', 'RPA-Automation Anywhere', '', 'UiPath', '', 'Windows Server Adminitration (AD/DNS)', 'RPA-UiPath', '', '', '', '', 'Celonis', 'RPA-Softomotive/ Power Automate', '', '', 'RPA Softomotive', 'R...</msg>
+<status status="PASS" starttime="20230222 09:01:09.451" endtime="20230222 09:01:09.454"/>
+</kw>
+<kw name="Get Table Column" library="RPA.Tables">
+<var>${Secondary Skill}</var>
+<arg>${input}</arg>
+<arg>${Dconfig}[Secondary Skill]</arg>
+<doc>Get all values for a single column in a table.</doc>
+<msg timestamp="20230222 09:01:09.457" level="INFO">${Secondary Skill} = ['Python', 'RPA-UiPath', '', 'Core JAVA', '', 'Service Now', 'MS EXCEL', '', 'SQL', '', '', 'MYSQL', 'HTML/CSS', '', '', '', 'ABBYY', 'ASP.Net', 'Kryon', 'C#', '', '', 'Python', '', '', '', 'Java', 'C...</msg>
+<status status="PASS" starttime="20230222 09:01:09.456" endtime="20230222 09:01:09.457"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${new table}</var>
+<arg>Name=${Name}</arg>
+<arg>Key Skill=${Key Skill}</arg>
+<arg>Client=${Client}</arg>
+<arg>Start Date=${Start Date}</arg>
+<arg>Designation=${Designation}</arg>
+<arg>Grade=${Grade}</arg>
+<arg>Primary Skill=${Primary Skill}</arg>
+<arg>Secondary Skill=${Secondary Skill}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230222 09:01:09.462" level="INFO">${new table} = {'Name': ['Sai Rohit  Majji', 'Mupparaju  Veera Venkata Sai Ramakrishna', 'Chakrathi  Asha Kiran', 'Appikatla Kiran Kumar', 'Putta  Rakesh', 'Jackson  Marteen', 'Shaik  Jilani Pasha', 'Nilofar Hasrat ...</msg>
+<status status="PASS" starttime="20230222 09:01:09.459" endtime="20230222 09:01:09.462"/>
+</kw>
+<kw name="Create Table" library="RPA.Tables">
+<var>${finaltable}</var>
+<arg>${new table}</arg>
+<doc>Create Table object from data.</doc>
+<msg timestamp="20230222 09:01:09.463" level="INFO">Created table: Table(columns=['Name', 'Key Skill', 'Client', 'Start Date', 'Designation', 'Grade', 'Primary Skill', 'Secondary Skill'], rows=95)</msg>
+<msg timestamp="20230222 09:01:09.465" level="INFO">${finaltable} = Table(columns=['Name', 'Key Skill', 'Client', 'Start Date', 'Designation', 'Grade', 'Primary Skill', 'Secondary Skill'], rows=95)</msg>
+<status status="PASS" starttime="20230222 09:01:09.462" endtime="20230222 09:01:09.465"/>
+</kw>
+<kw name="Sort Table By Column" library="RPA.Tables">
+<arg>${finaltable}</arg>
+<arg>Client</arg>
+<doc>Sort a table in-place according to ``column``.</doc>
+<status status="PASS" starttime="20230222 09:01:09.465" endtime="20230222 09:01:09.467"/>
+</kw>
+<kw name="Write table to CSV" library="RPA.Tables">
+<arg>${finaltable}</arg>
+<arg>output/Employes data.CSV</arg>
+<doc>Write a table as a CSV file.</doc>
+<status status="PASS" starttime="20230222 09:01:09.468" endtime="20230222 09:01:09.477"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${colerror}</var>
+<arg>done</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230222 09:01:09.480" level="INFO">${colerror} = done</msg>
+<status status="PASS" starttime="20230222 09:01:09.478" endtime="20230222 09:01:09.480"/>
+</kw>
+<status status="PASS" starttime="20230222 09:01:09.429" endtime="20230222 09:01:09.481"/>
+</branch>
+<branch type="EXCEPT">
+<kw name="Set Variable" library="BuiltIn">
+<var>${colerror}</var>
+<arg>fail</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20230222 09:01:09.483" endtime="20230222 09:01:09.484"/>
+</kw>
+<status status="NOT RUN" starttime="20230222 09:01:09.481" endtime="20230222 09:01:09.485"/>
+</branch>
+<status status="PASS" starttime="20230222 09:01:09.429" endtime="20230222 09:01:09.485"/>
+</try>
+<status status="PASS" starttime="20230222 09:01:09.428" endtime="20230222 09:01:09.485"/>
+</branch>
+<status status="PASS" starttime="20230222 09:01:09.421" endtime="20230222 09:01:09.485"/>
+</if>
+<return>
+<value>${colerror}</value>
+<status status="PASS" starttime="20230222 09:01:09.486" endtime="20230222 09:01:09.486"/>
+</return>
+<msg timestamp="20230222 09:01:09.486" level="INFO">${colerror} = done</msg>
+<status status="PASS" starttime="20230222 09:01:09.418" endtime="20230222 09:01:09.486"/>
+</kw>
+<status status="PASS" starttime="20230222 09:01:00.308" endtime="20230222 09:01:09.488"/>
+</test>
+<doc>Template robot main suite.</doc>
+<status status="PASS" starttime="20230222 09:00:53.034" endtime="20230222 09:01:09.492"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tasks</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Tasks">Tasks</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20230222 09:01:00.304" level="WARN">No input work items file found: None</msg>
+</errors>
+</robot>
