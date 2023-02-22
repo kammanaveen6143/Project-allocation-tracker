@@ -11,6 +11,7 @@ Library             RPA.Robocorp.WorkItems
 Library             RPA.Robocorp.Process
 Library             RPA.Dialogs
 Library             DateTime
+Library             String
 
 
 *** Variables ***
@@ -52,7 +53,8 @@ load config file
             ${Grade}=    Set Variable    ${config}[Column6]
             ${Primary Skill}=    Set Variable    ${config}[Column7]
             ${Secondary Skill}=    Set Variable    ${config}[Column8]
-            ${cc}=    Set Variable    ${config}[cc]
+            ${to}=    Set Variable    ${config}[to]
+            ${from}=    Set Variable    ${config}[from]
             ${configstatus}=    Set Variable    sucess
         EXCEPT
             ${configstatus}=    Set Variable    fail
@@ -73,6 +75,8 @@ load config file
             ...    Grade=${Grade}
             ...    Primary Skill=${Primary Skill}
             ...    Secondary Skill=${Secondary Skill}
+            ...    to=${to}
+            ...    from=${from}
         END
     END
     RETURN    ${Dconfig}
@@ -135,14 +139,14 @@ filter table using required columns and save in csv
         Send Email
         ...    ${localmail}
         ...    Bot failure
-        ...    mail not found pls send the attachment with ${Dconfig}[Subject] as subject
+        ...    mail not found pls send the attachment with Allocation tracker as subject
         ${colerror}=    Set Variable    mail
     ELSE IF    "${input}" == "missing"
         Open Application
         Send Email
         ...    ${localmail}
         ...    Bot failure
-        ...    attachment    not found pls send the attachment with ${Dconfig}[Subject] as subject
+        ...    attachment    not found pls send the attachment with Allocation tracker as subject
         ${colerror}=    Set Variable    file
     ELSE
         TRY
@@ -201,12 +205,13 @@ get count of allocations and send mail to costumer
         ${NBSH}=    Get Length    ${NBSH}
         ${Total}=    Evaluate    ${BFTE}+${Bpartial}+${NBCOA}+${NBDM}+${NBinv}+${NBT}+${NBU}+${NBSH}
         Log    ${Total}
+
         TRY
             Open Application
             Send Email
             ...    ${Dconfig}[costumor mail]
             ...    Bot report
-            ...    body=<p>Hi Deepika,</p><p>Bot runs sucessfully, Please find the attachment for employee details and below are the allocation detailes</p><table border="1" cellpadding="1" cellspacing="1" style="width:500px;"><tbody><tr><td>Allocation</td><td>Total</td></tr><tr><td>Billable (Full Time (FTE))</td><td>${BFTE}</td></tr><tr><td>Billable (Partial)</td><td>${Bpartial}</td></tr><tr><td>Non-Billable (Client On-boarding Awaited)</td><td>${NBCOA}</td></tr><tr><td>Non-Billable (Delivery Management</td><td>${NBDM}</td></tr><tr><td>Non-Billable (Investment)</td><td>${NBinv}</td></tr><tr><td>Non-Billable (Trainee)</td><td>${NBT}</td></tr><tr><td>Non-Billable (Unallocated)</td><td>${NBU}</td></tr><tr><td>Non-Billable Trainee (Shadow)</td><td>${NBSH}</td></tr><tr><td>Total</td><td>${Total}</td></tr></tbody></table><p>&nbsp;</p> <p>Thanks & Regards<br>Kamma Naveen</p><br>
+            ...    body=<p>Hi ${Dconfig}[to],</p><p>Bot runs sucessfully, Please find the attachment for employee details and below are the allocation detailes</p><table border="1" cellpadding="1" cellspacing="1" style="width:500px;"><tbody><tr><td>Allocation</td><td>Total</td></tr><tr><td>Billable (Full Time (FTE))</td><td>${BFTE}</td></tr><tr><td>Billable (Partial)</td><td>${Bpartial}</td></tr><tr><td>Non-Billable (Client On-boarding Awaited)</td><td>${NBCOA}</td></tr><tr><td>Non-Billable (Delivery Management</td><td>${NBDM}</td></tr><tr><td>Non-Billable (Investment)</td><td>${NBinv}</td></tr><tr><td>Non-Billable (Trainee)</td><td>${NBT}</td></tr><tr><td>Non-Billable (Unallocated)</td><td>${NBU}</td></tr><tr><td>Non-Billable Trainee (Shadow)</td><td>${NBSH}</td></tr><tr><td>Total</td><td>${Total}</td></tr></tbody></table><p>&nbsp;</p> <p>Thanks & Regards<br>${Dconfig}[from]</p><br>
             ...    html_body=${True}
             ...    attachments=output/Employes data.CSV
         EXCEPT
